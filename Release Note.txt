@@ -1,0 +1,44 @@
+/*
+Fecha : 2019-07-144
+Realizado: Duvan Baena
+Proyecto : 
+Descripcion : Install Nugget Packeage for Refresh (MvvmLightLibs)
+*/
+
+Libreria para proyectos del lado del Front-End destiando para poder usar los RelayCommand y retornar un método
+
+/*
+Fecha : 2019-07-144
+Realizado: Duvan Baena
+Proyecto : 
+Descripcion : Install Nugget Packeage (Xam.pluging.Conectivity)
+*/
+
+Plugin para chequear la conexión a internet en proyectos Xamarin (Proyectos del lado del Front- End)
+
+        public async Task<Response> CheckConnection()
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Please turn on your internet settings.",
+                };
+            }
+
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            if (!isReachable)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "No internet connection",
+                };
+            }
+
+            return new Response
+            {
+                IsSuccess = true,
+            };
+        }
